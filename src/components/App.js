@@ -6,7 +6,16 @@ class App extends Component {
   state = { isOpen: true };
 
   toggle = () => {
-    this.setState({ isOpen: !this.state.isOpen });
+    this.setState({
+      isOpen: !this.state.isOpen,
+      highlightedMenuItem: false
+    });
+  };
+
+  toggleHighlightedMenuItem = () => {
+    this.setState(state => ({
+      highlightedMenuItem: !state.highlightedMenuItem
+    }));
   };
 
   render() {
@@ -24,10 +33,18 @@ class App extends Component {
           timeout={350}
           classNames="balloon"
           unmountOnExit
-          appear>
+          appear
+          onEntered={this.toggleHighlightedMenuItem}
+          onExit={this.toggleHighlightedMenuItem}>
           <div className={"menu"}>
             <ul className={"list"}>
               <li className={"list-item"}>Home</li>
+              <li
+                className={cx("list-item", {
+                  "list-item--active": this.state.highlightedMenuItem
+                })}>
+                Profile
+              </li>
               <li className={"list-item"}>About</li>
               <li className={"list-item"}>Shop!</li>
             </ul>
