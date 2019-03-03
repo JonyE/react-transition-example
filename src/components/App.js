@@ -3,7 +3,7 @@ import cx from "classnames";
 import { CSSTransition } from "react-transition-group";
 
 class App extends Component {
-  state = { isOpen: false };
+  state = { isOpen: true };
 
   toggle = () => {
     this.setState({ isOpen: !this.state.isOpen });
@@ -23,12 +23,13 @@ class App extends Component {
           in={this.state.isOpen}
           timeout={350}
           classNames="balloon"
-          unmountOnExit>
+          unmountOnExit
+          appear>
           <div className={"menu"}>
             <ul className={"list"}>
               <li className={"list-item"}>Home</li>
               <li className={"list-item"}>About</li>
-              <li className={"list-item"}>Shop</li>
+              <li className={"list-item"}>Shop!</li>
             </ul>
           </div>
         </CSSTransition>
